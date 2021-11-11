@@ -14,7 +14,8 @@ app.use('/api/file', fileRouter)
 
 
 // Route for testing connection
-app.get('/', (request, response) => {
+app.post('/', (request, response) => {
+    console.log('pingpong');
     response.send({" ping": "pong" })
 })
 

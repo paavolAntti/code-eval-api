@@ -116,3 +116,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# cpp test files and output files
+*.cpp
+*.o
