@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/cmake-gtest_run.dir/main.cpp.o -o cmake-gtest_run 

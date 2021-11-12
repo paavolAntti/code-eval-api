@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/cmake-gtest_tst.dir/Weird-test.cpp.o CMakeFiles/cmake-gtest_tst.dir/main.cpp.o -o cmake-gtest_tst  ../src/libcmake-gtest_lib.a ../lib/libgtest.a -lpthread 

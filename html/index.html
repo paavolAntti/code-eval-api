@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>API Test Site</title>
+        <meta charset="utf-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    </head>
+    <body>
+        <h1>API Test Site</h1>
+        <form id='upload_form' enctype="multipart/form-data" method="POST"> 
+	   		<input id='file_upload' type="file" name="file_upload" />
+	   		<input type="submit" value="Upload a file"/>
+		</form>
+		<div id='result_container'>
+		</div>
+    </body>
+</html>
+
+<script>
+const baseURI = 'localhost:3003/api/file';
+
+const showResult = (data) => {
+	if (data.stdout != "") {
+		$('#result_container').empty().append(`<h2>Output: </h2><p>${data.stdout}</p><br>`);
+	}
+	if (data.stderr != "") {
+		$('#result_container').append(`<h2>Errors/Warnings: </h2><p>${data.stderr}</p>`);
+	}
+}
+$('#upload_form').on('submit', (e) => {
+    e.preventDefault();
+    console.log('uploading a file');
+    const file = document.getElementById('file_upload');
+    let formData = new FormData();
+    formData.append('file_upload', file.files[0]);
+    console.log(file.files[0]);
+    $.ajax({
+        url: 'http://localhost:3003/api/file/upload',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST', // For jQuery < 1.9
+        success: function(data){
+            console.log(data);
+            showResult(data);
+        }
+    });
+});
+</script>
