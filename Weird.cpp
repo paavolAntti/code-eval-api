@@ -10,7 +10,8 @@ std::string weirdAlgo(int n){
         } else {
             n /= 2;
         }
-        output += " " + std::to_string(n)
+        output += " " + std::to_string(n);
     }
     return output;
 }
+

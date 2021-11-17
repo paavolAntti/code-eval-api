@@ -7,7 +7,13 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
     </head>
     <body>
-        <h1>API Test Site</h1>
+        <h1>Toisto</h1>
+        <p>Tehtäväsi on selvittää, kuinka pitkä on lyhin merkkijono, jota toistamalla voidaan muodostaa annettu merkkijono.</p>
+        <p>Esimerkiksi kun merkkijono on abcabcabcabc, lyhin toistettava merkkijono on abc.</p>
+        <p>Merkkijono muodostuu merkeistä a–z ja siinä on enintään 100 merkkiä.</p>
+        <br>
+        <p>Kirjoita ohjelmasi tiedostoon repeat.cpp. Ohjelman tulee sisältää funktio Repeat, joka ottaa parametrina merkkijonon ja palauttaa kokonaisluvun</p>
+        
         <form id='upload_form' enctype="multipart/form-data" method="POST"> 
 	   		<input id='file_upload' type="file" name="file_upload" />
 	   		<input type="submit" value="Upload a file"/>
@@ -22,7 +28,7 @@ const baseURI = 'localhost:3003/api/file';
 
 const showResult = (data) => {
 	if (data.stdout != "") {
-		$('#result_container').empty().append(`<h2>Output: </h2><p>${data.stdout}</p><br>`);
+		$('#result_container').empty().append(`<h2>Results: </h2><p>${data.stdout}</p><br>`);
 	}
 	if (data.stderr != "") {
 		$('#result_container').append(`<h2>Errors/Warnings: </h2><p>${data.stderr}</p>`);
