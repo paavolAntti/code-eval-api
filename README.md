@@ -8,4 +8,4 @@
 	3. npm start or npm run dev to start in development mode
 	html-folder contains static test site to test endpoints
 # Endpoints
-	/api/uploads - upload file to server, compile and run it inside Debian-container using runsc-runtime for extra layer of security.
+	/api/file/uploads - upload file to server, compile and run it inside Debian-container using runsc-runtime for extra layer of security.
