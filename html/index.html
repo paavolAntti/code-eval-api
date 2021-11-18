@@ -11,7 +11,7 @@
         <p>Tehtäväsi on selvittää, kuinka pitkä on lyhin merkkijono, jota toistamalla voidaan muodostaa annettu merkkijono.</p>
         <p>Esimerkiksi kun merkkijono on abcabcabcabc, lyhin toistettava merkkijono on abc.</p>
         <p>Merkkijono muodostuu merkeistä a–z ja siinä on enintään 100 merkkiä.</p>
-        <br>
+        <h3>Tehtävä</h3>
         <p>Kirjoita ohjelmasi tiedostoon repeat.cpp. Ohjelman tulee sisältää funktio Repeat, joka ottaa parametrina merkkijonon ja palauttaa kokonaisluvun</p>
         
         <form id='upload_form' enctype="multipart/form-data" method="POST"> 
@@ -22,7 +22,7 @@
         <p>Luku on onnekas, jos sen numeroiden summa on jaollinen seitsemällä.</p>
         <p>Esimerkiksi luku 16 on on onnekas, koska 1+6 = 7, joka on jaollinen 7:llä</p>
         <p>Tehtäväsi on kirjoittaa funktio joka tarkistaa onko luku onnekas</p>
-        <br>
+        <h3>Tehtävä</h3>
         <p>Kirjoita ohjelmasi tiedostoon lucky.cpp. Ohjelman tulee sisältää funktio Lucky, joka ottaa parametrina kokonaisluvun(integer) ja palauttaa totuusarvon (boolean)</p>
         
         <form id='upload_form2' enctype="multipart/form-data" method="POST"> 
@@ -41,9 +41,11 @@ const showResult = (data) => {
 	if (data.stdout != "") {
         const partsOut = data.stdout.split("\n");
         $('#result_container').empty().append('<h2>Results: </h2>');
+        let startPrint = false;
         partsOut.forEach(element => {
             console.log(element);
-            $('#result_container').append(`<p>${element}</p>`);
+            if (element.includes("[==========]")) startPrint = true;
+            if (startPrint) $('#result_container').append(`<p>${element}</p>`);
         });
         
 	}

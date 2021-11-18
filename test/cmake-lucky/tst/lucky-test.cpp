@@ -16,9 +16,4 @@ TEST(LuckyTest, Test3) {
 TEST(LuckyTest, Test4) {
     EXPECT_EQ (Lucky(777), true);
 }
-TEST(LuckyTest, Results) {
-    std::cout << "[----------] Test1 EXPECTED OUTPUT WITH INPUT 14: false\n";
-    std::cout << "[----------] Test2 EXPECTED OUTPUT WITH INPUT 16: true\n";
-    std::cout << "[----------] Test3 EXPECTED OUTPUT WITH INPUT 123: false\n";
-    std::cout << "[----------] Test4 EXPECTED OUTPUT WITH INPUT 777: true\n";
-}
+
