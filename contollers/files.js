@@ -25,24 +25,23 @@ router.post('/upload', upload.single('file_upload'), async (req, res) => {
     console.log("Upload done");
     // Take filename without extension
     const name = file.filename.split('-')[1].split('.')[0];
-    //await test.runCommand(`cp uploads/${file.filename} cmake-gtest/src/${name}.h`);
-    // command to build files
-    const build = `docker run --runtime=runsc --rm -v "$(pwd)/uploads:/usr/src/app/uploads" debian-builder sh -c "cp uploads/${file.filename} src/${name}.h && cd build/ && cmake .. && make all && ./tst/cmake-gtest_tst"`;
-    // Compile the file first
-    //const compileFile = `docker run --runtime=runsc --rm -v "$(pwd)/cpp/src:/usr/src/app" debian-compiler sh -c "g++ -std=c++11 ${file.filename} -o ${name} -O2 && ./${name}"`;
+    // Command to run docker container with uploads-folder mounted and procedure to copy the right file to the right test-folder, then build files and run tests
+    const build = `docker run --runtime=runsc --rm -v "$(pwd)/uploads:/usr/src/app/uploads" debian-builder sh -c "cp uploads/${file.filename} cmake-${name}/src/${name}.h && cd cmake-${name}/build/ && cmake .. && make all && ./tst/cmake-${name}_tst"`;
     try {
         console.log('Started testing');
         const testOutput = await test.runCommand(build);
         // Return output as json
+        console.log(testOutput);
         res.json(testOutput);
         res.status(200);
         console.log('Testing done!');
     } catch (error) {
+        // Catch errors
         console.log(error);
         res.json(error);
         res.status(200);
     } finally {
-        //await test.runCommand(`rm cmake-gtest/src/${name}.h`);
+        // Wrap things up
         console.log('All done!');
     }
 });

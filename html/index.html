@@ -18,6 +18,17 @@
 	   		<input id='file_upload' type="file" name="file_upload" />
 	   		<input type="submit" value="Upload a file"/>
 		</form>
+        <h1>Onnenluku</h1>
+        <p>Luku on onnekas, jos sen numeroiden summa on jaollinen seitsemällä.</p>
+        <p>Esimerkiksi luku 16 on on onnekas, koska 1+6 = 7, joka on jaollinen 7:llä</p>
+        <p>Tehtäväsi on kirjoittaa funktio joka tarkistaa onko luku onnekas</p>
+        <br>
+        <p>Kirjoita ohjelmasi tiedostoon lucky.cpp. Ohjelman tulee sisältää funktio Lucky, joka ottaa parametrina kokonaisluvun(integer) ja palauttaa totuusarvon (boolean)</p>
+        
+        <form id='upload_form2' enctype="multipart/form-data" method="POST"> 
+	   		<input id='file_upload2' type="file" name="file_upload2" />
+	   		<input type="submit" value="Upload a file"/>
+		</form>
 		<div id='result_container'>
 		</div>
     </body>
@@ -28,16 +39,49 @@ const baseURI = 'localhost:3003/api/file';
 
 const showResult = (data) => {
 	if (data.stdout != "") {
-		$('#result_container').empty().append(`<h2>Results: </h2><p>${data.stdout}</p><br>`);
+        const partsOut = data.stdout.split("\n");
+        $('#result_container').empty().append('<h2>Results: </h2>');
+        partsOut.forEach(element => {
+            console.log(element);
+            $('#result_container').append(`<p>${element}</p>`);
+        });
+        
 	}
 	if (data.stderr != "") {
-		$('#result_container').append(`<h2>Errors/Warnings: </h2><p>${data.stderr}</p>`);
+        const partsErr = data.stderr.split("\n");
+		$('#result_container').append('<h2>Errors/Warnings: </h2>');
+        partsErr.forEach(element => {
+            $('#result_container').append(`<p>${data.stderr}</p>`);
+        });
+        
+        
 	}
 }
 $('#upload_form').on('submit', (e) => {
     e.preventDefault();
     console.log('uploading a file');
     const file = document.getElementById('file_upload');
+    let formData = new FormData();
+    formData.append('file_upload', file.files[0]);
+    console.log(file.files[0]);
+    $.ajax({
+        url: 'http://localhost:3003/api/file/upload',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST', // For jQuery < 1.9
+        success: function(data){
+            console.log(data);
+            showResult(data);
+        }
+    });
+});
+$('#upload_form2').on('submit', (e) => {
+    e.preventDefault();
+    console.log('uploading a file');
+    const file = document.getElementById('file_upload2');
     let formData = new FormData();
     formData.append('file_upload', file.files[0]);
     console.log(file.files[0]);
