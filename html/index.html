@@ -29,13 +29,16 @@
 	   		<input id='file_upload2' type="file" name="file_upload2" />
 	   		<input type="submit" value="Upload a file"/>
 		</form>
+        <div class='testing_info'>
+            
+        </div>
 		<div id='result_container'>
 		</div>
     </body>
 </html>
 
 <script>
-const baseURI = 'localhost:3003/api/file';
+const baseURI = 'http://koodintarkistus.hopto.org';
 
 const showResult = (data) => {
 	if (data.stdout != "") {
@@ -61,13 +64,14 @@ const showResult = (data) => {
 }
 $('#upload_form').on('submit', (e) => {
     e.preventDefault();
+    $('#testing_info').empty().append("<h2>Testing...</2>");
     console.log('uploading a file');
     const file = document.getElementById('file_upload');
     let formData = new FormData();
     formData.append('file_upload', file.files[0]);
     console.log(file.files[0]);
     $.ajax({
-        url: 'http://localhost:3003/api/file/upload',
+        url: `${baseURI}/api/file/upload`,
         data: formData,
         cache: false,
         contentType: false,
@@ -75,6 +79,7 @@ $('#upload_form').on('submit', (e) => {
         method: 'POST',
         type: 'POST', // For jQuery < 1.9
         success: function(data){
+            $('#testing_info').empty();
             console.log(data);
             showResult(data);
         }
@@ -82,13 +87,14 @@ $('#upload_form').on('submit', (e) => {
 });
 $('#upload_form2').on('submit', (e) => {
     e.preventDefault();
+    $('#testing_info').empty().append("<h2>Testing...</2>");
     console.log('uploading a file');
     const file = document.getElementById('file_upload2');
     let formData = new FormData();
     formData.append('file_upload', file.files[0]);
     console.log(file.files[0]);
     $.ajax({
-        url: 'http://localhost:3003/api/file/upload',
+        url: `${baseURI}/api/file/upload`,
         data: formData,
         cache: false,
         contentType: false,
@@ -96,6 +102,7 @@ $('#upload_form2').on('submit', (e) => {
         method: 'POST',
         type: 'POST', // For jQuery < 1.9
         success: function(data){
+            $('#testing_info').empty();
             console.log(data);
             showResult(data);
         }
