@@ -19,13 +19,13 @@ router.post('/upload', upload.single('file_upload'), async (req, res) => {
     if (!file) {
         const error = new Error('Please upload a file');
         error.httpStatusCode = 400;
-        console.log(error);
         res.status(400);    
     }
     console.log("Upload done");
     // Take filename without extension
     const name = file.filename.split('-')[1].split('.')[0];
-    // Command to run docker container with uploads-folder mounted and procedure to copy the right file to the right test-folder, then build files and run tests
+    // Command to run docker container with uploads-folder mounted 
+    // and procedure to copy the right file to the right test-folder, then build files and run tests
     const build = `docker run --runtime=runsc --rm -v "$(pwd)/uploads:/usr/src/app/uploads" debian-builder sh -c "cp uploads/${file.filename} cmake-${name}/src/${name}.h && cd cmake-${name}/build/ && cmake .. && make all && ./tst/cmake-${name}_tst"`;
     try {
         console.log('Started testing\n----');
