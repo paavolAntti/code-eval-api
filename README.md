@@ -5,7 +5,7 @@
 	API uses docker with runsc-runtime so host must have docker daemon 
 	and gVisor application kernel installed and runsc configured.
 # Usage
-In code-eval-api/ folder run following commands
+	In code-eval-api/ folder run following commands
 	1. docker build . -t debian-builder
 	2. npm run install
 	3. npm start to run in production mode or npm run dev to start in development mode
