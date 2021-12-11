@@ -1,9 +1,15 @@
 const app = require('./app')
-const http = require('http')
+const https = require('https')
 const config = require('./utils/config')
+const fs = require('fs');
+// Options for ssl certificate
+const options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+}
 
-const server = http.createServer(app)
-console.log(config.PORT)
+const server = https.createServer(options, app);
+
 server.listen(config.PORT, () => {
     console.log(`Server running on port ${config.PORT}`)
 });

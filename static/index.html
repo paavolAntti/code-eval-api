@@ -3,8 +3,8 @@
     <head>
         <title>API Test Site</title>
         <meta charset="utf-8">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+        <script src="script/jquery-3.6.0.min.js"></script>
+  	<script src="script/jquery.form.js"></script>
     </head>
     <body>
         <h1>Toisto</h1>
@@ -35,77 +35,5 @@
 		<div id='result_container'>
 		</div>
     </body>
+    <script src="script/index.js"></script>
 </html>
-
-<script>
-const baseURI = 'http://localhost:3003';
-
-const showResult = (data) => {
-	if (data.stdout != "") {
-        const partsOut = data.stdout.split("\n");
-        $('#result_container').empty().append('<h2>Results: </h2>');
-        let startPrint = false;
-        partsOut.forEach(element => {
-            console.log(element);
-            if (element.includes("[==========]")) startPrint = true;
-            if (startPrint) $('#result_container').append(`<p>${element}</p>`);
-        });
-        
-	}
-	if (data.stderr != "") {
-        const partsErr = data.stderr.split("\n");
-		$('#result_container').append('<h2>Errors/Warnings: </h2>');
-        partsErr.forEach(element => {
-            $('#result_container').append(`<p>${data.stderr}</p>`);
-        });
-        
-        
-	}
-}
-$('#upload_form').on('submit', (e) => {
-    e.preventDefault();
-    $('#testing_info').empty().append("<h2>Testing...</2>");
-    console.log('uploading a file');
-    const file = document.getElementById('file_upload');
-    let formData = new FormData();
-    formData.append('file_upload', file.files[0]);
-    console.log(file.files[0]);
-    $.ajax({
-        url: `${baseURI}/api/file/upload`,
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        method: 'POST',
-        type: 'POST', // For jQuery < 1.9
-        success: function(data){
-            $('#testing_info').empty();
-            console.log(data);
-            showResult(data);
-        }
-    });
-});
-$('#upload_form2').on('submit', (e) => {
-    e.preventDefault();
-    $('#testing_info').empty().append("<h2>Testing...</2>");
-    console.log('uploading a file');
-    const file = document.getElementById('file_upload2');
-    let formData = new FormData();
-    formData.append('file_upload', file.files[0]);
-    console.log(file.files[0]);
-    $.ajax({
-        url: `${baseURI}/api/file/upload`,
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        method: 'POST',
-        type: 'POST', // For jQuery < 1.9
-        success: function(data){
-            $('#testing_info').empty();
-            console.log(data);
-            showResult(data);
-        }
-    });
-});
-</script>
