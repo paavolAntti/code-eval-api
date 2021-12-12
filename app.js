@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 // Imports
 const express = require('express');
 const cors = require('cors');
@@ -7,13 +8,7 @@ const session = require('express-session');
 const fileRouter = require('./contollers/files');
 // Application is express server
 const app = express();
-app.set('trust proxy', 1);
-app.use(session({
-    secret: 'salainen salaisuus on erittain salainen',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-}))
+
 // User cors for enabling cross-site scripting, configure this if API is exposed to internet
 app.use(cors());
 app.use(helmet());
