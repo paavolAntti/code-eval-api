@@ -4,6 +4,7 @@ require('express-async-errors');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const path = require('path');
 // Import routes
 const fileRouter = require('./contollers/files');
 // Application is express server
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(middleware.requestLogger);
 // Routes declared in controllers
 app.use('/api/file', fileRouter);
-app.use(express.static('static'));
+app.use('/', express.static(path.join(__dirname, 'static')));
 // Route for testing connection
 app.post('/', (request, response) => {
 	console.log('pingpong');
