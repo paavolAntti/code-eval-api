@@ -20,7 +20,6 @@
  * Lesser General Public License for more details.
  */
 /* global ActiveXObject */
-
 /* eslint-disable */
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
