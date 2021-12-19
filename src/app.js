@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const path = require('path');
 // Import routes
 const fileRouter = require('./contollers/files');
+const createRouter = require('./contollers/create');
 // Application is express server
 const app = express();
 const middleware = require('./utils/middleware');
@@ -18,6 +19,8 @@ app.use(express.json());
 app.use(middleware.requestLogger);
 // Routes declared in controllers
 app.use('/api/file', fileRouter);
+app.use('/api', createRouter);
+// eslint-disable-next-line no-undef
 app.use('/', express.static(path.join(__dirname, 'static')));
 // Route for testing connection
 app.post('/', (request, response) => {

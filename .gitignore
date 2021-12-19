@@ -116,8 +116,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
+# Ignore uploaded files
 uploads/
+
 
 #pem files
 *.pem

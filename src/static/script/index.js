@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
-const baseURI = 'https://koodintarkistus.hopto.org:3333';
+// For development
+const baseURI = 'http://localhost:3003';
+// For production
+//const baseURI = 'https://koodintarkistus.hopto.org:3333'
 
 const showResult = (data) => {
 	if (data.stdout != '') {
