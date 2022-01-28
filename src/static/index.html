@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>API Test Site</title>
+        <meta charset="utf-8">
+        <script src="script/jquery-3.6.0.min.js"></script>
+  	<script src="script/jquery.form.js"></script>
+    </head>
+    <body>
+        <h1>Toisto</h1>
+        <p>Tehtäväsi on selvittää, kuinka pitkä on lyhin merkkijono, jota toistamalla voidaan muodostaa annettu merkkijono.</p>
+        <p>Esimerkiksi kun merkkijono on abcabcabcabc, lyhin toistettava merkkijono on abc.</p>
+        <p>Merkkijono muodostuu merkeistä a–z ja siinä on enintään 100 merkkiä.</p>
+        <h3>Tehtävä</h3>
+        <p>Kirjoita ohjelmasi tiedostoon repeat.cpp. Ohjelman tulee sisältää funktio Repeat, joka ottaa parametrina merkkijonon ja palauttaa kokonaisluvun</p>
+        
+        <form id='upload_form' enctype="multipart/form-data" method="POST"> 
+	   		<input id='file_upload' type="file" name="file_upload" />
+	   		<input type="submit" value="Upload a file"/>
+		</form>
+        <h1>Onnenluku</h1>
+        <p>Luku on onnekas, jos sen numeroiden summa on jaollinen seitsemällä.</p>
+        <p>Esimerkiksi luku 16 on on onnekas, koska 1+6 = 7, joka on jaollinen 7:llä</p>
+        <p>Tehtäväsi on kirjoittaa funktio joka tarkistaa onko luku onnekas</p>
+        <h3>Tehtävä</h3>
+        <p>Kirjoita ohjelmasi tiedostoon lucky.cpp. Ohjelman tulee sisältää funktio Lucky, joka ottaa parametrina kokonaisluvun(integer) ja palauttaa totuusarvon (boolean)</p>
+        
+        <form id='upload_form2' enctype="multipart/form-data" method="POST"> 
+	   		<input id='file_upload2' type="file" name="file_upload2" />
+	   		<input type="submit" value="Upload a file"/>
+		</form>
+        <div id='testing_info'>
+            
+        </div>
+		<div id='result_container'>
+		</div>
+    </body>
+    <script src="script/index.js"></script>
+</html>
