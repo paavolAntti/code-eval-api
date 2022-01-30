@@ -1,29 +1,31 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nohup node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Antti Paavola",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.5.0",
-    "nodemon": "^2.0.14",
-    "typescript": "^4.4.3"
-  },
-  "dependencies": {
-    "cookie-session": "^1.4.0",
-    "cors": "^2.8.5",
-    "cross-env": "^7.0.2",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
-    "express-session": "^1.17.2",
-    "helmet": "^4.6.0",
-    "multer": "^1.4.3"
-  }
+	"name": "test",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Antti Paavola",
+	"license": "ISC",
+	"devDependencies": {
+		"eslint": "^8.5.0",
+		"nodemon": "^2.0.14",
+		"typescript": "^4.4.3"
+	},
+	"dependencies": {
+		"cookie-session": "^1.4.0",
+		"cors": "^2.8.5",
+		"cross-env": "^7.0.2",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"express-async-errors": "^3.1.1",
+		"express-session": "^1.17.2",
+		"helmet": "^4.6.0",
+		"mongoose": "^6.1.8",
+		"mongoose-unique-validator": "^3.0.0",
+		"multer": "^1.4.3"
+	}
 }
