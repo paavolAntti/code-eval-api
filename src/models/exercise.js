@@ -20,6 +20,7 @@ const exerciseSchema = mongoose.Schema({
 			test: [
 				{
 					testSuite: String,
+					testName: String,
 					testType: Number,
 					parameter: Number,
 					expected: Boolean
