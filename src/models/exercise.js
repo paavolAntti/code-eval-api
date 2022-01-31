@@ -5,13 +5,26 @@ const exerciseSchema = mongoose.Schema({
 	name: {
 		type: String,
 		minglength: 4,
-		unique: true
+		//unique: true
 	},
 	description: String,
 	parts: [
 		{
 			partName: String,
 			points: Number,
+		}
+	],
+	testArray: [
+		{
+			functionToTest: String,
+			test: [
+				{
+					testSuite: String,
+					testType: Number,
+					parameter: Number,
+					expected: Boolean
+				}
+			]
 		}
 	]
 });
