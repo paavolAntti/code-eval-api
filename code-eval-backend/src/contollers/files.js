@@ -31,11 +31,11 @@ router.post('/upload', upload.single('file_upload'), async (req, res) => {
 	console.log(name);
 	console.log(file.filename);
 	try {
-		const response = await axios.post('http://tester:3004/testfile', {
+		const response = await axios.post('http://tester:3004/tester/testfile', {
 			name: name,
 			filename: file.filename,
 		});
-		console.log(response);
+		//console.log(response);
 		res.json(response.data);
 		res.status(200);
 	} catch (error) {

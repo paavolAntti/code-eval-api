@@ -4,7 +4,7 @@ const app = express();
 const runCommand = require('./utils/test').runCommand;
 app.use(express.json());
 
-app.post('/testfile', async (req, res) => {
+app.post('/tester/testfile', async (req, res) => {
     const name = req.body.name;
     const filename = req.body.filename;
 

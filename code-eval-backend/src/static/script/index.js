@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // For development
-const baseURI = 'http://localhost:3003';
+const baseURI = 'http://localhost';
 // For production
 //const baseURI = 'https://koodintarkistus.hopto.org:3333'
 
