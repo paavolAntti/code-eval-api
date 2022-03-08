@@ -119,6 +119,6 @@ dist
 # Ignore uploaded files
 uploads/
 src/test/gtest/
-
+db/
 #pem files
 *.pem

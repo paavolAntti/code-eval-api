@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const multer = require('multer');
 const test = require('../utils/test');
+const axios = require('axios');
 var storage = multer.diskStorage({
 	destination: 'uploads',
 	filename: (_req, file, cb) => {
@@ -26,23 +27,20 @@ router.post('/upload', upload.single('file_upload'), async (req, res) => {
 	const name = file.filename.split('-')[1].split('.')[0];
 	// Command to run docker container with uploads-folder mounted 
 	// and procedure to copy the right file to the right test-folder, then build files and run tests
-	const build = `docker run --runtime=runsc --rm -v "$(pwd)/uploads:/usr/src/app/uploads" debian-builder sh -c "cp uploads/${file.filename} cmake-${name}/src/${name}.h && cd cmake-${name}/build/ && cmake .. && make all && ./tst/cmake-${name}_tst"`;
+	//const build = `docker run --runtime=runsc --rm -v "$(pwd)/uploads:/usr/src/app/uploads" debian-builder sh -c "cp uploads/${file.filename} cmake-${name}/src/${name}.h && cd cmake-${name}/build/ && cmake .. && make all && ./tst/cmake-${name}_tst"`;
+	console.log(name);
+	console.log(file.filename);
 	try {
-		console.log('Started testing\n----');
-		const testOutput = await test.runCommand(build);
-		// Return output as json
-		console.log(testOutput);
-		res.json(testOutput);
+		const response = await axios.post('http://tester:3004/testfile', {
+			name: name,
+			filename: file.filename,
+		});
+		console.log(response);
+		res.json(response.data);
 		res.status(200);
-		console.log('Testing done!\n----');
 	} catch (error) {
-		// Catch errors
-		console.log(error);
 		res.json(error);
-		res.status(200);
-	} finally {
-		// Wrap things up
-		console.log('All done!');
+		res.status(400);    
 	}
 });
 // Endpoint for running container command in server

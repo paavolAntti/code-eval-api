@@ -1,0 +1,67 @@
+version: '3.8'
+# Services
+services:
+    # Restful API
+    backend:
+        image: backend:alpine
+        build: ./code-eval-backend
+        restart: unless-stopped
+        environment:
+            - REQUEST_LOG=reqest-log.txt
+            - ERROR_LOG=error-log.txt
+            - MONGOURI=mongodb://mongo:27017
+        # Bind volumes. Bind to code-eval-backend is only for development
+        volumes:
+            - ./code-eval-backend:/usr/src/app
+            - ./uploads:/usr/src/app/uploads
+            - ./tests:/usr/src/app/tests
+        depends_on:
+            - mongo
+        networks:
+            - code-eval-network
+    # Database
+    mongo:
+        image: mongo
+        restart: unless-stopped
+        volumes:
+            - ./db:/data/db
+        networks:
+            - code-eval-network
+    # Admin tool for mongodb. Only for development
+    mongo-express:
+        image: mongo-express
+        restart: unless-stopped
+        ports:
+          - 8081:8081
+        environment:
+            - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+        depends_on:
+            - mongo
+        networks:
+            - code-eval-network
+    # Tester container for compiling, running and testing c++ code
+    tester:
+        image: tester:alpine
+        build: ./code-eval-tester
+        environment:
+            - PORT=3004
+        volumes:
+            - ./code-eval-tester:/usr/src/app
+            - ./uploads:/usr/src/app/uploads
+            - ./tests:/usr/src/app/tests
+        networks:
+            - code-eval-network
+    balancer:
+        image: nginx
+        ports:
+            - 80:80
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - backend
+        networks:
+            - code-eval-network
+# Networks
+networks:
+    code-eval-network:
+        name: code-eval-network
