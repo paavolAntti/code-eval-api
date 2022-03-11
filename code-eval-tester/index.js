@@ -1,14 +1,21 @@
 const express = require('express');
 const http = require('http');
 const app = express();
+const fs = require('fs');
 const runCommand = require('./utils/test').runCommand;
 app.use(express.json());
+
+app.get('/tester/testroute', (_req, res) => {
+	res.send('Terve, maailma!');
+})
 
 app.post('/tester/testfile', async (req, res) => {
     const name = req.body.name;
     const filename = req.body.filename;
-
-    const build = `cp ./uploads/${filename} ./tests/cmake-${name}/src/${name}.h && cd ./tests/cmake-${name}/build/ && cmake .. && make all && ./tst/cmake-${name}_tst`;
+	// Copy the uploaded file to containers testbed
+	fs.copyFileSync(`/usr/src/app/uploads/${filename}`, `/usr/src/app/tests/cmake-${name}/src/${name}.h`);
+    // C
+	const build = `cd /usr/src/app/tests/cmake-${name}/build/ && cmake .. && make all && /usr/src/app/tests/cmake-${name}/build/tst/cmake-${name}_tst`;
 
     try {
 		console.log('Started testing\n----');

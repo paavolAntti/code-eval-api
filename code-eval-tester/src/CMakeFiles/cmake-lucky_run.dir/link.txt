@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/cmake-lucky_run.dir/main.cpp.o -o cmake-lucky_run 

@@ -1,6 +1,15 @@
 version: '3.8'
 # Services
 services:
+    # Container to run React-frontend
+    frontend:
+        image: frontend:alpine
+        build: ./code-eval-front
+        restart: unless-stopped
+        volumes:
+            - ./code-eval-front:/usr/src/app
+        networks:
+            - code-eval-network
     # Restful API
     backend:
         image: backend:alpine

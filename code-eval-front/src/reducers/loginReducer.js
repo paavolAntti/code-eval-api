@@ -15,6 +15,7 @@ export const loginUser = (credentials) => {
     return async dispatch => {
         try {
             const user = await loginService.login(credentials)
+            console.log(user);
             dispatch({
                 type: 'LOGIN',
                 data: user

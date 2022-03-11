@@ -10,6 +10,7 @@ const fileRouter = require('./contollers/files');
 const createRouter = require('./contollers/create');
 const courseRouter = require('./contollers/course');
 const exerciseRouter = require('./contollers/exercise');
+const loginRouter = require('./contollers/login');
 // Application is express server
 const app = express();
 const middleware = require('./utils/middleware');
@@ -20,10 +21,11 @@ app.use(express.json());
 // Automatic logging of requests
 app.use(middleware.requestLogger);
 // Routes declared in controllers
-app.use('/api/file', fileRouter);
-app.use('/api', createRouter);
-app.use('/api', courseRouter);
-app.use('/api', exerciseRouter);
+app.use('/file', fileRouter);
+app.use('/', createRouter);
+app.use('/', courseRouter);
+app.use('/', exerciseRouter);
+app.use('/', loginRouter);
 // eslint-disable-next-line no-undef
 app.use('/', express.static(path.join(__dirname, 'static')));
 // Route for testing connection

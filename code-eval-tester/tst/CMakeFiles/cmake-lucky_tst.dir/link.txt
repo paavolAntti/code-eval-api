@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/cmake-lucky_tst.dir/lucky-test.cpp.o CMakeFiles/cmake-lucky_tst.dir/main.cpp.o -o cmake-lucky_tst  ../src/libcmake-lucky_lib.a ../lib/libgtest.a 
