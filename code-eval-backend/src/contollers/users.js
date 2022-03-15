@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const router = require('express').Router();
 const User = require('../models/user');
+const Role = require('../models/role');
 const validator = require('email-validator');
 
 router.get('/', async (req, res) => {
@@ -43,10 +44,14 @@ router.post('/', async(req, res) => {
 	const saltRounds = 12;
 	const passwordHash = await bcrypt.hash(password, saltRounds);
 	// Luodaan uusi käyttäjä bodyssa annetuilla arvoilla
+	const role = await Role.findOne({role: 'student'});
+	console.log(role);
+	console.log('terve terve');
 	const user = new User({
-		username,
-		mail,
-		passwordHash
+		username: username,
+		email: mail,
+		passwordHash: passwordHash,
+		role: role._id
 	});
 	// Tallennetaan luotu käyttäjä tietokantaan
 	const savedUser = await user.save();

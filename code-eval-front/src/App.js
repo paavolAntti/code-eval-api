@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Login from './components/Login';
 import UserInfo from './components/UserInfo';
+import CreateUser from './components/CreateUser';
 import { setUser, logoutUser  } from './reducers/loginReducer'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -29,14 +30,25 @@ const App = () => {
 	if (!user) {
 		return (
 			<div>
-				<Login/>
+				<Router>
+				<div>
+					<div className='navigation'>
+							<Link style={linkStyle} to='/login'>Login</Link>
+							<Link style={linkStyle} to='/createuser'>New User</Link>
+					</div>
+					<Routes>
+						<Route path='/createuser' element={<CreateUser/>}/>
+						<Route path='/login' element={<Login/>}/>
+					</Routes>
+				</div>
+				</Router>
 			</div>
 		)	
-	} 
+	}
 	// If user is logged in show the main page
 	return (
 		<div className='main_container'>
-			<h4>{user.username} signed in <button onClick={logout}>logout</button></h4>
+			<h4>{user.name} signed in <button onClick={logout}>logout</button></h4>
 			<Router>
 				<div>
 					<div className='navigation'>

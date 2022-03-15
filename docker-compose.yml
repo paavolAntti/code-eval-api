@@ -6,6 +6,8 @@ services:
         image: frontend:alpine
         build: ./code-eval-front
         restart: unless-stopped
+        environment:
+            - WDS_SOCKET_PORT=0
         volumes:
             - ./code-eval-front:/usr/src/app
         networks:

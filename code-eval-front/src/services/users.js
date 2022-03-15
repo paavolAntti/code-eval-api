@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://backend:3003/api/users'
+const baseUrl = 'http://localhost/api/users'
 
 const newUser = async (username, mail, password) => {
     const newUser = {

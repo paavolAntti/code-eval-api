@@ -16,6 +16,7 @@ const UserInfo = ({ user }) => {
                     <ul>
                         <li>email: {user.email}</li>
                         <li>username: {user.username}</li>
+                        <li>role: {user.role.role}</li>
                     </ul>
                 </div>
                 
