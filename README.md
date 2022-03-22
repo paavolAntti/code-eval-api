@@ -1,16 +1,18 @@
-# API for code evaluation system
+# Prerequisites to run development environment
+	1. Docker and Docker compose for your operating system
+		-https://docs.docker.com/engine/install/
+		-https://docs.docker.com/compose/install/
+	2. Make sure that ports 80, 8081 are not used
+	
+# Frontend, Node.js backend and tester-module for code evaluation system
 	API for uploading cpp-files to host, compiling and running tests
-	inside Docker-container from debian:stable image.
+	inside Docker-container
 	Results are returned as JSON.
-	API uses docker with runsc-runtime so host must have docker daemon 
-	and gVisor application kernel installed and runsc configured.
-# Usage
-	In code-eval-api/ folder run following commands
-	1. docker build . -t debian-builder
-	2. npm run install
-	3. npm start to run in production mode or npm run dev to start in development mode
+# Development
+	In code-eval-front, code-eval-backend, code-eval-tester folder run following commands
+	1. npm run install
 	static-folder contains static test site to test endpoints and scripts needed in frontend to upload files
-# Endpoints
-	/api/file/uploads - upload file to server, compile and run it 
-		inside Docker-container using runsc-runtime for extra layer of security.
-	/ - default endpoint servers index.html as test site for api
+	
+	In root, run docker-compose up to run the development environment. The containers have the folders bind so change code on your local machine to 	make changes to running software
+	
+
