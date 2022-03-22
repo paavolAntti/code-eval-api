@@ -8,6 +8,6 @@ RUN apk update && apk add bash
 
 #COPY . .
 
-#RUN npm install
+RUN npm install
 
 CMD [ "npm", "start"]
