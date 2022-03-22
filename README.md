@@ -9,10 +9,10 @@
 	inside Docker-container
 	Results are returned as JSON.
 # Development
-	In code-eval-front, code-eval-backend, code-eval-tester folder run following commands
-	1. npm run install
-	static-folder contains static test site to test endpoints and scripts needed in frontend to upload files
+	static/ contains static test site to test endpoints and scripts needed in frontend to upload files
 	
-	In root, run docker-compose up to run the development environment. The containers have the folders bind so change code on your local machine to 	make changes to running software
+	In root, run docker-compose up to run the development environment.
+	The containers have the folders bind so you can change code on your local machine to make 
+	changes to application in real time
 	
 
