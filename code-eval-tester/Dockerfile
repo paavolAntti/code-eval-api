@@ -11,7 +11,7 @@ RUN mkdir tests && mkdir uploads
 #RUN addgroup -S testgroup && adduser -S testuser -G testgroup
 # Change the current user to created non-root user
 #USER testuser
-#RUN npm install
+RUN npm install
 
 #CMD [ "npm", "run", "dev"]
 
