@@ -13,7 +13,13 @@ const userSchema = mongoose.Schema({
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Role'
-	}
+	},
+	courses: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Course'
+		}
+	]
 });
 
 userSchema.set('toJSON', {

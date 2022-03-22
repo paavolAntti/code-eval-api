@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
+// Components
 import Login from './components/Login';
 import UserInfo from './components/UserInfo';
 import CreateUser from './components/CreateUser';
+import Courses from './components/course/Courses';
+import SingleCourse from './components/course/SingleCourse';
+// Reducers
 import { setUser, logoutUser  } from './reducers/loginReducer'
+import { getAllCourses } from './reducers/courseReducer';
+// Other
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -10,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const App = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.user);
+	const courses = useSelector(state => state.course)
 	// Logout
 	const logout = (event) => {
 		event.preventDefault()
@@ -25,7 +32,13 @@ const App = () => {
 			const userToLog = JSON.parse(loggedUser);
 			dispatch(setUser(userToLog));
 		}
-	}, [dispatch])
+	}, [dispatch]);
+
+	useEffect(() => {
+		if (user) {
+			dispatch(getAllCourses())
+		}
+	}, [dispatch, user])
 	// If no user, show the login form
 	if (!user) {
 		return (
@@ -56,8 +69,9 @@ const App = () => {
 							<Link style={linkStyle} to='/user'>User Info</Link>
 					</div>
 					<Routes>
-						<Route path='/courses' element={<h2>Courses</h2>}/>
+						<Route path='/courses' element={<Courses courses={courses} user={user}/>}/>
 						<Route path='/user' element={<UserInfo user={user}/>}/>
+						<Route path='/course/:id' element={<SingleCourse courses={courses} user={user}/>}/>
 					</Routes>
 				</div>
 			</Router>

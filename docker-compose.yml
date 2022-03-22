@@ -10,6 +10,7 @@ services:
             - WDS_SOCKET_PORT=0
         volumes:
             - ./code-eval-front:/usr/src/app
+        command: bash -c "npm install && npm start"
         networks:
             - code-eval-network
     # Restful API
@@ -26,6 +27,7 @@ services:
             - ./code-eval-backend:/usr/src/app
             - ./uploads:/usr/src/app/uploads
             - ./tests:/usr/src/app/tests
+        command: bash -c "npm install && npm run dev"
         depends_on:
             - mongo
         networks:
@@ -60,6 +62,7 @@ services:
             - ./code-eval-tester:/usr/src/app
             - ./uploads:/usr/src/app/uploads
             - ./tests:/usr/src/app/tests
+        command: bash -c "npm install && npm run dev"
         networks:
             - code-eval-network
     balancer:

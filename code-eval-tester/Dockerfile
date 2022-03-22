@@ -13,5 +13,5 @@ RUN mkdir tests && mkdir uploads
 #USER testuser
 #RUN npm install
 
-CMD [ "npm", "run", "dev"]
+#CMD [ "npm", "run", "dev"]
 

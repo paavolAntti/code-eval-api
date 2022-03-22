@@ -1,5 +1,4 @@
 #Logs
-logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -118,7 +117,5 @@ dist
 .pnp.*
 # Ignore uploaded files
 uploads/
-src/test/gtest/
-db/
 #pem files
 *.pem

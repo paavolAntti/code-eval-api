@@ -5,7 +5,9 @@ const Course = require('../models/course');
 router.get('/courses', async (_req, res) => {
 	try {
 		// find all courses
-		const courses = await Course.find({});
+		console.log('courses called');
+		const courses = await Course.find({}).populate('exercises');
+		console.log(courses);
 		res.status(200);
 		res.send(courses);
 	} catch (error) {

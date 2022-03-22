@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
 // Function to generate CMakeLists.txt with given parameters
 const createMainCMakeLists = (project) => {
 	// Path to new test-folder
-	const dir = `src/test/${project}`;
+	const dir = `tests/${project}`;
 	// Data to write to the new main CMakeLists
 	const data =`
 	cmake_minimum_required(VERSION 3.10)
@@ -37,7 +37,7 @@ const createMainCMakeLists = (project) => {
 };
 // Function to create subdirectories
 const createTestStructure = (project, testsArray) => {
-	const dir = `src/test/${project}`;
+	const dir = `tests/${project}`;
 	const srcDir = `${dir}/src`;
 	const tstDir = `${dir}/tst`;
 	// Create folders and copy generic CMakeLists.txt's to the right folders

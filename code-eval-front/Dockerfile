@@ -10,4 +10,4 @@ RUN apk update && apk add bash
 
 #RUN npm install
 
-CMD [ "npm", "start"]
+#CMD [ "npm", "start"]
